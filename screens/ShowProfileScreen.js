@@ -26,11 +26,11 @@ export default class ProfileScreen extends React.Component {
         return ({
         title: 'Мои данные',
         headerStyle: {
-        backgroundColor: '#40E0D0',
+            backgroundColor: '#40E0D0',
         },
         headerTintColor: '#fff',
         headerTitleStyle: {
-        fontWeight: '500'
+            fontWeight: '500'
         },
         headerLeft:null,
         headerRight: (
@@ -38,9 +38,17 @@ export default class ProfileScreen extends React.Component {
                 <SvgUri
                     width="30"
                     height="30"
-                    style={styles.headerRight}
+                    style={{ paddingRight: 10  }}
                     source={require('../assets/images/edit.svg')}
                 />
+            </TouchableOpacity>
+        ),
+        headerLeft: (
+            <TouchableOpacity onPress={()=>{
+                firebase.auth().signOut();
+                navigation.navigate('Login');
+            }}>
+                <Text style={styles.exit}>Выход</Text>
             </TouchableOpacity>
         )
     })
@@ -56,7 +64,6 @@ export default class ProfileScreen extends React.Component {
             "weight": "",
         }
     }
-
 
     fetchHandler = () => {
         let user = firebase.auth().currentUser.uid;

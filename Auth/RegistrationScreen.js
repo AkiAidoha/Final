@@ -7,6 +7,7 @@ import {
     TouchableOpacity, 
     StyleSheet, 
     View,
+    Image,
     ImageBackground,
     StatusBar,
     TouchableWithoutFeedback,
@@ -39,14 +40,36 @@ export default class RegistrationScreen extends React.Component{
     }
 
     signUpUser = (email, password) => {
-
-        try{
-            firebase.auth().createUserWithEmailAndPassword(email, password)
-            this.props.navigation.navigate("Login")
-        }catch(err) {
-            console.log(err)
+        let errorCode;
+        if(((email === '' && password === '') || (email === '' || password === ''))) {
+            Alert.alert("Введите все Ваши данные");
+        }else{
+            firebase.auth().createUserWithEmailAndPassword(email, password).then(()=>{
+                this.props.navigation.navigate("Login")
+                alert("Вы успешно зарегистрированы.");
+            })
+            .catch((error)=> {
+                errorCode = error.code;
+                if (errorCode === 'auth/wrong-password') {
+                    console.log("Wrong password");
+                    alert('Неправильный email или пароль.');
+                }else if(errorCode === 'invalid-email'){
+                    console.log("Invalid email");
+                    alert('Неправильный email или пароль.');
+                }else if('auth/email-already-in-use'){
+                    console.log("Email already in use");
+                    alert("Email уже используется.");
+                }
+                else if('auth/user-disabled'){
+                    console.log("User disabled");
+                    alert("Email не найден.");
+                }else {
+                    console.log("Navigate to Login");
+                    this.props.navigation.navigate('Login');
+                    alert("Вы успешно зарегистрированы.");
+                }
+            });
         }
-    
     }
 
 
@@ -54,6 +77,7 @@ export default class RegistrationScreen extends React.Component{
         return(
         <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}> 
+          <ScrollView>
             <View style={styles.container}>
                     <ImageBackground
                         style={{
@@ -67,6 +91,12 @@ export default class RegistrationScreen extends React.Component{
                         }}
                         source={require('../assets/images/32-649_4.jpg')}
                     >
+
+                <View style={styles.logoView}>
+                    <Image source={require('../assets/images/logo.png')}
+                           style={styles.logo}/>
+                </View>        
+
                 <View style={styles.inputs}>
                     <View style={styles.inputRectangle}>
                         <View style={styles.rectangleOne}>
@@ -123,6 +153,7 @@ export default class RegistrationScreen extends React.Component{
                 </View>
                 </ImageBackground>    
             </View>
+          </ScrollView>
           </TouchableWithoutFeedback>  
         </KeyboardAvoidingView>
         );

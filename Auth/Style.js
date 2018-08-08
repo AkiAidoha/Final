@@ -89,6 +89,10 @@ const Style = StyleSheet.create({
     checkboxes:{
         marginTop: 30
     },
+    logo:{
+        width:100,
+        height:100
+    }
 });
 
 export default Style;

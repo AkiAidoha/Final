@@ -5,6 +5,7 @@ import AppNavigator from './navigation/AppNavigator';
 import * as firebase from 'firebase';
 
 console.disableYellowBox = true;
+console.ignoredYellowBox = ['Remote debugger'];
 
 
 export default class App extends React.Component {
@@ -13,12 +14,6 @@ export default class App extends React.Component {
     fontLoaded: false
   };
 
-
-  // componentDidMount() {
-  //   firebase.auth().onAuthStateChanged(user => {
-  //     this.props.navigation.navigate(user ? 'Main' : 'Login')
-  //   })
-  // }
 
   render() {
 
@@ -44,7 +39,7 @@ export default class App extends React.Component {
     return Promise.all([
       Asset.loadAsync([
         require('./assets/images/32-649_4.jpg'),
-        require('./assets/images/hospital.svg'),
+        require('./assets/images/logo.png'),
         require('./assets/images/user.svg'),
         require('./assets/images/padlock.svg'),
         require('./assets/images/calendar.svg'),
@@ -76,8 +71,6 @@ export default class App extends React.Component {
   };
 
   _handleLoadingError = error => {
-    // In this case, you might want to report the error to your error
-    // reporting service, for example Sentry
     console.warn(error);
   };
 

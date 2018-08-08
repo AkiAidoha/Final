@@ -8,6 +8,7 @@ import {
     StyleSheet, 
     ImageBackground,
     View,
+    Image,
     StatusBar,
     TouchableWithoutFeedback,
     Keyboard,
@@ -35,19 +36,33 @@ export default class LoginScreen extends React.Component{
 
 
     loginUser = (email, password) => {
-        // console.log(email)
-        // console.log(password)
-        if(email === '' && password === ''){
+        let errorCode;
+        if(((email === '' && password === '') || (email === '' || password === ''))) {
             Alert.alert("Введите все Ваши данные");
         }else{
-            try {
-                firebase.auth().signInWithEmailAndPassword(email, password).then(function(user) {
-                    console.log("Success")
-                })
+            firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
                 this.props.navigation.navigate("Main")
-            }catch(error) {
-                console.log(error.toString())
-            }
+            })
+            .catch((error)=> {
+                errorCode = error.code;
+                if (errorCode === 'auth/wrong-password') {
+                    console.log("Wrong password");
+                    alert('Неправильный email или пароль.');
+                }else if(errorCode === 'invalid-email'){
+                    console.log("Invalid email");
+                    alert('Неправильный email или пароль.');
+                }else if('auth/user-not-found'){
+                    console.log("User not found");
+                    alert("Email не найден.");
+                }
+                else if('auth/user-disabled'){
+                    console.log("User disabled");
+                    alert("Email не найден.");
+                }else {
+                    console.log("Navigate to Main");
+                    this.props.navigation.navigate('Main');
+                }
+            });
         }
         
     }
@@ -72,11 +87,8 @@ export default class LoginScreen extends React.Component{
                 >
 
                 <View style={styles.logoView}>
-                    <SvgUri
-                        width="70"
-                        height="70"
-                        source={require('../assets/images/hospital.svg')}
-                    />
+                    <Image source={require('../assets/images/logo.png')}
+                           style={styles.logo}/>
                 </View>
 
                 <View style={styles.inputs}>

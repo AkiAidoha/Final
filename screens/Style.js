@@ -156,9 +156,6 @@ const Style = StyleSheet.create({
         fontSize: 30,
         paddingBottom: 20
     },
-    headerRight:{
-        paddingRight: 10
-    },
     userData:{
         justifyContent: 'center', 
         alignItems: 'center',
@@ -200,6 +197,10 @@ const Style = StyleSheet.create({
     userIcon:{
         width: '10%'
     },
+    exit:{
+        color:'#fff',
+        paddingLeft: 10
+    }
 });
 
 export default Style;

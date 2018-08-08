@@ -23,16 +23,21 @@ import firebase from '../FireBase/FireBase'
 
 export default class ProfileScreen extends React.Component {
     
-    static navigationOptions = {
-        title: 'Редактировать',
-        headerStyle: {
-        backgroundColor: '#40E0D0',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-        fontWeight: '500'
-        },
+    static navigationOptions = ({navigation}) => {
+        return({
+            title: 'Редактировать',
+            headerStyle: {
+                backgroundColor: '#40E0D0',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+                fontWeight: '500'
+            },
+            
+        })
     };
+
+    
 
     constructor(props) {
         super(props);
