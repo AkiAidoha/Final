@@ -7,44 +7,36 @@ import {
     TouchableOpacity, 
     StyleSheet, 
     View,
-    Image,
     ImageBackground,
     StatusBar,
     TouchableWithoutFeedback,
-    Keyboard
+    Keyboard,
+    Image
 } from 'react-native';
-
-import SvgUri from 'react-native-svg-uri';
+ import SvgUri from 'react-native-svg-uri';
 import DatePicker from 'react-native-datepicker';
 import styles from './Style';
 import { KeyboardAvoidingView } from 'react-native';
 import firebase from '../FireBase/FireBase'
-
-
-export default class RegistrationScreen extends React.Component{
+ export default class RegistrationScreen extends React.Component{
     
-
-    state = {
+     state = {
         email: '',
         password: '',
     }
-
-
-
-
-    handleChangeUsername = (email) => {
+     handleChangeUsername = (email) => {
         this.setState({email})
     }
     handleChangePassword = (password) => {
         this.setState({password})
     }
-
+    
     signUpUser = (email, password) => {
         let errorCode;
         if(((email === '' && password === '') || (email === '' || password === ''))) {
             Alert.alert("Введите все Ваши данные");
         }else{
-            firebase.auth().createUserWithEmailAndPassword(email, password).then(()=>{
+            firebase.auth().createUserWithEmailAndPassword(email, password).then((user)=>{
                 this.props.navigation.navigate("Login")
                 alert("Вы успешно зарегистрированы.");
             })
@@ -73,11 +65,10 @@ export default class RegistrationScreen extends React.Component{
     }
 
 
-    render(){
+     render(){
         return(
         <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}> 
-          <ScrollView>
             <View style={styles.container}>
                     <ImageBackground
                         style={{
@@ -92,10 +83,10 @@ export default class RegistrationScreen extends React.Component{
                         source={require('../assets/images/32-649_4.jpg')}
                     >
 
-                <View style={styles.logoView}>
-                    <Image source={require('../assets/images/logo.png')}
-                           style={styles.logo}/>
-                </View>        
+                    <View style={styles.logoView}>
+                        <Image source={require('../assets/images/logo.png')}
+                            style={styles.logo}/>
+                    </View>
 
                 <View style={styles.inputs}>
                     <View style={styles.inputRectangle}>
@@ -136,8 +127,7 @@ export default class RegistrationScreen extends React.Component{
                             />
                         </View> 
                     </View>  
-
-                     <View style={styles.buttonView}>
+                      <View style={styles.buttonView}>
                         <TouchableOpacity 
                             style={styles.button}
                             onPress={() => this.signUpUser(this.state.email, this.state.password)}
@@ -149,13 +139,48 @@ export default class RegistrationScreen extends React.Component{
                                 Есть аккаунт?
                         </Text>
                     </View>
-
-                </View>
+                 </View>
                 </ImageBackground>    
             </View>
-          </ScrollView>
           </TouchableWithoutFeedback>  
         </KeyboardAvoidingView>
         );
     }
 }
+
+    // signUpUser = (email, password) => {
+    //     let errorCode;
+    //     if(((email === '' && password === '') || (email === '' || password === ''))) {
+    //         Alert.alert("Введите все Ваши данные");
+    //     }else{
+    //         firebase.auth().createUserWithEmailAndPassword(email, password).then((user)=>{
+    //             alert("Вы успешно зарегистрированы.");
+    //             user.sendEmailVerification().then(()=>{
+    //                 alert("Пожалуйста, проверьте почту");
+    //             }).catch((e)=>{
+    //                 alert(e);
+    //             });
+    //         })
+    //         .catch((error)=> {
+    //             errorCode = error.code;
+    //             if (errorCode === 'auth/wrong-password') {
+    //                 console.log("Wrong password");
+    //                 alert('Неправильный email или пароль.');
+    //             }else if(errorCode === 'invalid-email'){
+    //                 console.log("Invalid email");
+    //                 alert('Неправильный email или пароль.');
+    //             }else if('auth/email-already-in-use'){
+    //                 console.log("Email already in use");
+    //                 alert("Email уже используется.");
+    //             }
+    //             else if('auth/user-disabled'){
+    //                 console.log("User disabled");
+    //                 alert("Email не найден.");
+    //             }else {
+    //                 console.log("Navigate to Login");
+    //                 this.props.navigation.navigate('Login');
+    //                 alert("Вы успешно зарегистрированы.");
+    //             }
+    //         });
+    //     }
+    // }

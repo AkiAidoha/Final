@@ -130,8 +130,10 @@ export default class LoginScreen extends React.Component{
                             />
                         </View>     
                     </View>  
-
-                    <Text style={styles.forgotPassword}>Забыли пароль?</Text>
+                    
+                    <TouchableOpacity onPress={()=> this.props.navigation.navigate("Forgot")}>
+                        <Text style={styles.forgotPassword}>Забыли пароль?</Text>
+                    </TouchableOpacity>
 
                      <View style={styles.buttonView}>
                         <TouchableOpacity 
@@ -140,10 +142,10 @@ export default class LoginScreen extends React.Component{
                          >
                             <Text style={styles.buttonText}>Войти</Text>        
                         </TouchableOpacity>
-                        <Text style={styles.noAccount} 
-                            onPress={()=> this.props.navigation.navigate("Registration")}>
-                                Нет учетной записи?
-                        </Text>
+                            <Text style={styles.noAccount}
+                                  onPress={()=> this.props.navigation.navigate("Registration")}>
+                                    Нет учетной записи?
+                            </Text>
                     </View>
 
                 </View>
