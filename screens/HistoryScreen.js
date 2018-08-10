@@ -37,19 +37,7 @@ export default class HistoryScreen extends React.Component {
         userHistory: []
     }
 
-    fetchHandler = () => {
-        let user = firebase.auth().currentUser.uid;
-        firebase
-            .database()
-            .ref('donation')
-            .orderByChild('userId')
-            .equalTo(user)
-            .once('value', snap => {
-                if(snap.val()) {
-                    console.log(snap.val(), "      SNAP VAL")
-                }
-            });
-    }
+
 
     getDataHandler = () => {
         let user = firebase.auth().currentUser.uid;
@@ -61,7 +49,7 @@ export default class HistoryScreen extends React.Component {
             .equalTo(user)
             .once('value', snap => {
                 if(snap.val()) {
-                    console.log(snap.val(), "SNAP SHOT")
+
                     userHistory = Object.keys(snap.val()).map(i => snap.val()[i])
                     this.setState({
                         userHistory: userHistory,
@@ -76,11 +64,11 @@ export default class HistoryScreen extends React.Component {
     }
 
     componentWillReceiveProps = () => {
-        console.log("REVIE PROPS")
+
         this.setState({
             show: this.props.navigation.getParam("show")
         })
-        console.log(this.state.show)
+
         this.getDataHandler()
     }
 

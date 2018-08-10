@@ -15,7 +15,6 @@ import {
 import styles from './Style';
 import SvgUri from 'react-native-svg-uri';
 import { KeyboardAvoidingView } from 'react-native';
-import RNPickerSelect from 'react-native-picker-select';
 import firebase from '../FireBase/FireBase'
 
 

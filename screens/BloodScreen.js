@@ -38,14 +38,14 @@ export default class BloodScreen extends React.Component {
     this.state = {
         bdate: '',
         value: '',
-        city: undefined,
+        city: "",
         switch1: false,
         switch2: false,
         switch3: false,
         switch4: false,
         switch5: false,
         switch6: false,
-        component: undefined,
+        component: "",
         items: [
             {
                 label: 'Цельная кровь',
@@ -91,24 +91,34 @@ export default class BloodScreen extends React.Component {
 
         const database = firebase.database()
         const userRef = database.ref('donation/')
-        if( 
-            bdate==='' && 
-            component==='' && 
-            value==='' 
+        if(
+            bdate==='' &&
+            component==='' &&
+            value===''
         ){
 
             Alert.alert("Введите все Ваши данные")
-        }else{
-            let user = firebase.auth().currentUser.uid;
-            let result = userRef.push({
-                bdate: this.state.bdate,
-                component: this.state.component,
-                value: this.state.value,
-                userId: user
-            })
-            Alert.alert("Ваша донация успешно зарегистрирована!")
-            this.props.navigation.navigate('History', {show: false})
-        }  
+        }else if (
+            this.state.switch1  || this.state.switch2 || this.state.switch3 || this.state.switch4 || this.state.switch5 || this.state.switch6
+        ) {
+            Alert.alert("Вам нельзя совершать донацию, так как вы ели запрещенные продукты")
+        } else{
+            try{
+                let user = firebase.auth().currentUser.uid;
+                let result = userRef.push({
+                    bdate: this.state.bdate,
+                    component: this.state.component,
+                    value: this.state.value,
+                    userId: user
+                })
+                Alert.alert("Ваша донация успешно зарегистрирована!")
+                this.props.navigation.navigate('History', {show: false})
+            }catch(e)
+            {
+                Alert("Что то пошло не так")
+            }
+
+        }
     }   
 
 

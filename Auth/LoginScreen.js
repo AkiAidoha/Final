@@ -46,20 +46,20 @@ export default class LoginScreen extends React.Component{
             .catch((error)=> {
                 errorCode = error.code;
                 if (errorCode === 'auth/wrong-password') {
-                    console.log("Wrong password");
+
                     alert('Неправильный email или пароль.');
                 }else if(errorCode === 'invalid-email'){
-                    console.log("Invalid email");
+
                     alert('Неправильный email или пароль.');
                 }else if('auth/user-not-found'){
-                    console.log("User not found");
+
                     alert("Email не найден.");
                 }
                 else if('auth/user-disabled'){
-                    console.log("User disabled");
+
                     alert("Email не найден.");
                 }else {
-                    console.log("Navigate to Main");
+
                     this.props.navigation.navigate('Main');
                 }
             });
@@ -70,21 +70,9 @@ export default class LoginScreen extends React.Component{
 
     render(){
         return(
-        <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>  
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>    
+        <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
             <View style={styles.container}>
-                <ImageBackground
-                    style={{
-                    flex: 1,
-                    position: 'absolute',
-                    width: '100%',
-                    height: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: '#fff'
-                    }}
-                    source={require('../assets/images/32-649_4.jpg')}
-                >
 
                 <View style={styles.logoView}>
                     <Image source={require('../assets/images/logo.png')}
@@ -101,16 +89,16 @@ export default class LoginScreen extends React.Component{
                             />
                         </View>
                         <View style={styles.rectangleTwo}>
-                            <TextInput  placeholder={"Email"} 
+                            <TextInput  placeholder={"Email"}
                                         style={styles.textinput}
                                         placeholderTextColor="white"
                                         value={this.state.email}
                                         onChangeText={this.handleChangeUsername}
                                         underlineColorAndroid='transparent'
                             />
-                        </View>    
-                    </View> 
-                                
+                        </View>
+                    </View>
+
                     <View style={styles.inputRectangle}>
                         <View style={styles.rectangleOne}>
                             <SvgUri
@@ -120,7 +108,7 @@ export default class LoginScreen extends React.Component{
                             />
                         </View>
                         <View style={styles.rectangleTwo}>
-                            <TextInput  placeholder={"Пароль"} 
+                            <TextInput  placeholder={"Пароль"}
                                         style={styles.textinput}
                                         placeholderTextColor="white"
                                         value={this.state.password}
@@ -128,28 +116,40 @@ export default class LoginScreen extends React.Component{
                                         secureTextEntry
                                         underlineColorAndroid='transparent'
                             />
-                        </View>     
-                    </View>  
-                    
+                        </View>
+                    </View>
+
                     <TouchableOpacity onPress={()=> this.props.navigation.navigate("Forgot")}>
-                        <Text style={styles.forgotPassword}>Забыли пароль?</Text>
+                        <Text style={{
+                            textAlign: 'right',
+                            alignSelf:'stretch',
+                            marginRight: 25,
+                            marginTop: 10,
+                            color: '#57e5dd',
+                        }}>Забыли пароль?</Text>
                     </TouchableOpacity>
 
                      <View style={styles.buttonView}>
-                        <TouchableOpacity 
+                        <TouchableOpacity
                             style={styles.button}
                             onPress={() => this.loginUser(this.state.email, this.state.password)}
                          >
-                            <Text style={styles.buttonText}>Войти</Text>        
+                            <Text style={styles.buttonText}>Войти</Text>
                         </TouchableOpacity>
-                            <Text style={styles.noAccount}
+                            <Text style={{
+                                textAlign: 'right',
+                                alignSelf:'stretch',
+                                marginRight: 25,
+                                marginTop: 10,
+                                color: '#57e5dd',
+                            }}
                                   onPress={()=> this.props.navigation.navigate("Registration")}>
                                     Нет учетной записи?
                             </Text>
                     </View>
 
                 </View>
-            </ImageBackground>        
+
             </View>
           </TouchableWithoutFeedback>
         </KeyboardAvoidingView>

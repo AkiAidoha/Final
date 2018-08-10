@@ -8,7 +8,8 @@ import ForgotPasswordScreen from '../Auth/ForgotPasswordScreen';
 
 export default createSwitchNavigator({
     Login: LoginScreen,
+    Forgot:ForgotPasswordScreen,
     Registration: RegistrationScreen,
     Main: MainTabNavigator,
-    Forgot:ForgotPasswordScreen,
+
 });

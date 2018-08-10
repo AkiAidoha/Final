@@ -30,7 +30,7 @@ export default class EachHistoryScreen extends React.Component {
     deleteHandler = () => {
         const recipe = this.props.navigation.getParam("element")
         let user = firebase.auth().currentUser.uid;
-        console.log("USER IF ", user)
+
         let ref = firebase.database().ref('donation');
         ref
             .orderByChild("userId")
@@ -46,7 +46,6 @@ export default class EachHistoryScreen extends React.Component {
                             }
                         }
                     })
-                    console.log("CORRECT INDEX ", correctIndex)
                     ref.child(Object.keys(snap.val())[correctIndex]).remove()
                     this.props.navigation.navigate('History', {show: false})
                 }

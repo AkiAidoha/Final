@@ -60,18 +60,7 @@ export default class LoginScreen extends React.Component{
         <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>  
           <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>    
             <View style={styles.container}>
-                <ImageBackground
-                    style={{
-                    flex: 1,
-                    position: 'absolute',
-                    width: '100%',
-                    height: '100%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: '#fff'
-                    }}
-                    source={require('../assets/images/32-649_4.jpg')}
-                >
+
 
                 <View style={styles.logoView}>
                     <Image source={require('../assets/images/logo.png')}
@@ -108,7 +97,6 @@ export default class LoginScreen extends React.Component{
                     </View>
 
                 </View>
-            </ImageBackground>        
             </View>
           </TouchableWithoutFeedback>
         </KeyboardAvoidingView>

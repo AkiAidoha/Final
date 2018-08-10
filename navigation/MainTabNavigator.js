@@ -19,7 +19,7 @@ AddressStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-navigate${focused ? '' : '-outline'}` : 'md-navigate'}
+      name={'md-navigate'}
     />
   ),
   tabBarOptions: {
@@ -36,7 +36,7 @@ BloodStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-heart${focused ? '' : '-outline'}` : 'md-heart'}
+      name={'md-heart'}
     />
   ),
   tabBarOptions: {
@@ -56,7 +56,7 @@ HistoryStack.navigationOptions = {
     tabBarIcon: ({ focused }) => (
         <TabBarIcon
             focused={focused}
-            name={Platform.OS === 'ios' ? `ios-time${focused ? '' : '-outline'}` : 'md-time'}
+            name={'md-time'}
         />
     ),
     tabBarOptions: {
@@ -76,7 +76,7 @@ ProfileStack.navigationOptions = {
     tabBarIcon: ({ focused }) => (
         <TabBarIcon
             focused={focused}
-            name={Platform.OS === 'ios' ? `ios-person${focused ? '' : '-outline'}` : 'md-person'}
+            name={'md-person'}
         />
     ),
     tabBarOptions: {

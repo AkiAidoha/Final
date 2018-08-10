@@ -79,9 +79,9 @@ const Style = StyleSheet.create({
         alignItems: 'center',
     },
     buttonText:{
-        color:'white',
         textAlign:'center',
-        fontSize: 20
+        fontSize: 20,
+        color: "white"
     },
     noAccount:{
         textAlign: 'right',
@@ -95,7 +95,7 @@ const Style = StyleSheet.create({
         alignSelf:'stretch',
         marginRight: 25,
         marginTop: 10,
-        color: '#ffffff',
+        color: 'black',
     },
     inputs: {
         marginTop: 100
@@ -200,6 +200,13 @@ const Style = StyleSheet.create({
     exit:{
         color:'#fff',
         paddingLeft: 10
+    },
+
+    actionText: {
+        textAlign: 'right',
+        marginRight: 25,
+        marginTop: 10,
+        color: '#57e5dd',
     }
 });
 

@@ -70,18 +70,6 @@ import firebase from '../FireBase/FireBase'
         <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}> 
             <View style={styles.container}>
-                    <ImageBackground
-                        style={{
-                        flex: 1,
-                        position: 'absolute',
-                        width: '100%',
-                        height: '100%',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        backgroundColor: '#fff'
-                        }}
-                        source={require('../assets/images/32-649_4.jpg')}
-                    >
 
                     <View style={styles.logoView}>
                         <Image source={require('../assets/images/logo.png')}
@@ -134,13 +122,19 @@ import firebase from '../FireBase/FireBase'
                         >
                             <Text style={styles.buttonText}>Зарегистрироваться</Text>        
                         </TouchableOpacity>
-                        <Text style={styles.noAccount} 
+                        <Text style={{
+                            textAlign: 'right',
+                            alignSelf:'stretch',
+                            marginRight: 25,
+                            marginTop: 10,
+                            color: '#57e5dd',
+                        }}
                             onPress={()=> this.props.navigation.navigate("Login")}>
                                 Есть аккаунт?
                         </Text>
                     </View>
                  </View>
-                </ImageBackground>    
+
             </View>
           </TouchableWithoutFeedback>  
         </KeyboardAvoidingView>
